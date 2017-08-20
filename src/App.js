@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './app.css';
 import {
   Grid,
   Row,
@@ -37,7 +36,6 @@ export default class App extends Component {
       intervalID = setInterval(this.countdown, 1000);
       isPlaying = true;
     } else {
-      console.log('pause');
       clearInterval(intervalID);
       this.setState({
         timerButtonText: 'play',
@@ -48,7 +46,6 @@ export default class App extends Component {
   };
 
   countdown = () => {
-    console.log('a');
     if (this.state.timer === 0) {
       clearInterval(intervalID);
       this.setState({
@@ -92,7 +89,13 @@ export default class App extends Component {
       <Grid>
         <Row>
           <Col lg={2} lgOffset={5}>
-            <div className="timer">
+            <div
+              style={{
+                fontSize: '10em',
+                textAlign: 'center'
+              }}
+              className="timer"
+            >
               {this.state.timer}
             </div>
           </Col>
@@ -110,6 +113,10 @@ export default class App extends Component {
         <Row>
           <Col lg={2} lgOffset={5}>
             <Button
+              style={{
+                marginBottom: '10px',
+                marginTop: '30px'
+              }}
               block
               className="buttons"
               bsStyle={this.state.timerButtonColor}
