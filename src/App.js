@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import './app.css';
+import {
+  Grid,
+  Row,
+  Col,
+  Button,
+  FormControl,
+  Glyphicon
+} from 'react-bootstrap';
 
 let isPlaying = false;
 let inputTime = 0;
@@ -9,7 +18,8 @@ export default class App extends Component {
     super(props);
     this.state = {
       timer: 0,
-      timerButtonText: 'Start'
+      timerButtonText: 'play',
+      timerButtonColor: 'success'
     };
   }
 
@@ -21,7 +31,8 @@ export default class App extends Component {
     if (!isPlaying) {
       this.setState({
         timer: inputTime,
-        timerButtonText: 'Pause'
+        timerButtonText: 'pause',
+        timerButtonColor: 'warning'
       });
       intervalID = setInterval(this.countdown, 1000);
       isPlaying = true;
@@ -29,7 +40,8 @@ export default class App extends Component {
       console.log('pause');
       clearInterval(intervalID);
       this.setState({
-        timerButtonText: 'Resume'
+        timerButtonText: 'play',
+        timerButtonColor: 'success'
       });
       isPlaying = false;
     }
@@ -40,7 +52,8 @@ export default class App extends Component {
     if (this.state.timer === 0) {
       clearInterval(intervalID);
       this.setState({
-        timerButtonText: 'Start'
+        timerButtonText: 'play',
+        timerButtonColor: 'success'
       });
       isPlaying = false;
     } else {
@@ -57,13 +70,18 @@ export default class App extends Component {
     isPlaying = false;
     this.setState({
       timer: 0,
-      timerButtonText: 'Start'
+      timerButtonText: 'play',
+      timerButtonColor: 'success'
     });
   };
 
   showResetButton = () => {
-    if (this.state.timerButtonText === 'Resume') {
-      return <button onClick={this.timerReset}>Reset</button>;
+    if (this.state.timerButtonText === 'pause') {
+      return (
+        <Button bsStyle="danger" block bsSize="large" onClick={this.timerReset}>
+          <Glyphicon glyph="stop" />
+        </Button>
+      );
     } else {
       return <div />;
     }
@@ -71,14 +89,41 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
-        {this.state.timer}
-        <input type="number" placeholder="enter" onChange={this.handleChange} />
-        <button onClick={this.timerPlayPause}>
-          {this.state.timerButtonText}
-        </button>
-        {this.showResetButton()}
-      </div>
+      <Grid>
+        <Row>
+          <Col lg={2} lgOffset={5}>
+            <div className="timer">
+              {this.state.timer}
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={2} lgOffset={5}>
+            <FormControl
+              type="number"
+              bsSize="lg"
+              placeholder="enter"
+              onChange={this.handleChange}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={2} lgOffset={5}>
+            <Button
+              block
+              className="buttons"
+              bsStyle={this.state.timerButtonColor}
+              bsSize="large"
+              onClick={this.timerPlayPause}
+            >
+              <Glyphicon glyph={this.state.timerButtonText} />
+            </Button>
+          </Col>
+          <Col lg={2} lgOffset={5}>
+            {this.showResetButton()}
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }
