@@ -1,0 +1,7 @@
+{
+  "name": "Countdown Seconds",
+  "description": "A web seconds stopwatch",
+  "repository": "https://github.com/M-ZubairAhmed/Countdown-Seconds",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "static"]
+}

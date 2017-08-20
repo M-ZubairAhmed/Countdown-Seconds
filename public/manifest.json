@@ -1,11 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Countdown-Seconds",
+  "name": "Countdown stopwatch in Seconds",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo100.gif",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/gif"
     }
   ],
   "start_url": "./index.html",
