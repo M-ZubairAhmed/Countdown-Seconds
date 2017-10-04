@@ -1,5 +1,5 @@
 # Countdown-Seconds
-![countdown seconds](https://i.imgur.com/tfW2K2y.png)
+![gif](https://i.imgur.com/Cmj1sWB.gif)
 
 ## Discription
 A simple seconds stopwatch web application written with React library and React-Bootstrap
